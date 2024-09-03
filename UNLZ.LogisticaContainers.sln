@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticaContainers.Managers", "LogisticaContainers.Managers\LogisticaContainers.Managers.csproj", "{2B2ABE27-8C69-48C8-B396-5A84DA60E177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticaContainers.Managers", "LogisticaContainers.Managers\LogisticaContainers.Managers.csproj", "{2B2ABE27-8C69-48C8-B396-5A84DA60E177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogisticaContainers.Web", "..\LogisticaContainers.Web\LogisticaContainers.Web.csproj", "{886BC29E-3E5C-4773-945A-80D510ED0157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogisticaContainers.Web", "LogisticaContainers.Web\LogisticaContainers.Web.csproj", "{80020A38-8044-4EB8-8E53-129E8997F03D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{2B2ABE27-8C69-48C8-B396-5A84DA60E177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B2ABE27-8C69-48C8-B396-5A84DA60E177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B2ABE27-8C69-48C8-B396-5A84DA60E177}.Release|Any CPU.Build.0 = Release|Any CPU
-		{886BC29E-3E5C-4773-945A-80D510ED0157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{886BC29E-3E5C-4773-945A-80D510ED0157}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{886BC29E-3E5C-4773-945A-80D510ED0157}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{886BC29E-3E5C-4773-945A-80D510ED0157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80020A38-8044-4EB8-8E53-129E8997F03D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80020A38-8044-4EB8-8E53-129E8997F03D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80020A38-8044-4EB8-8E53-129E8997F03D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80020A38-8044-4EB8-8E53-129E8997F03D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
