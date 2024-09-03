@@ -1,3 +1,5 @@
+
+
 using LogisticaContainers.Managers.Entidades;
 using LogisticaContainers.Managers.Managers;
 using LogisticaContainers.Web.Models;
@@ -17,10 +19,10 @@ namespace LogisticaContainers.Web.Controllers
 
         public IActionResult Index()
         {
-            ContainerManager manager = new ContainerManager();
+          /*  ContainerManager manager = new ContainerManager();
             Container container = manager.CrearContainer();
             ViewBag.dataContainer = container;
-            return View();
+            */return View();
         }
 
         public IActionResult Privacy()
