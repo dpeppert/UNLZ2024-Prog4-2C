@@ -58,7 +58,12 @@ Clase 2:
 Portal MVC 
 
 Definicion MVC - Modelo Vista Controlador. 
+
 Definicion de un modelo de ejemplo
+
 Definición de un controlador de ejemplo
+
 definicion de vista index y create 
+
 Agregamos elementos de navegacion a contenedores
+
