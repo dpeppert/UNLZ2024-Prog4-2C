@@ -1,7 +1,11 @@
+using LogisticaContainers.Managers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IContainerManager, ContainerManager>();
 
 var app = builder.Build();
 

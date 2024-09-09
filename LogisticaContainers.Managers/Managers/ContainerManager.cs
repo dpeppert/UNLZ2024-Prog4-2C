@@ -5,9 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogisticaContainers.Managers.Managers
+namespace LogisticaContainers.Managers
 {
-    public class ContainerManager
+    public interface IContainerManager
+    {
+        Container CrearContainer();
+    }
+
+
+    public class ContainerManager : IContainerManager
     {
         public ContainerManager()
         {
@@ -19,7 +25,7 @@ namespace LogisticaContainers.Managers.Managers
         {
             Container container = new Container
             {
-                IdContainer = 1,
+                IdContainer = 6,
                 DescripcionContainer = "ASD-QE-12",
                 EstaCargado = false,
                 IdUsuarioAlta =1, 

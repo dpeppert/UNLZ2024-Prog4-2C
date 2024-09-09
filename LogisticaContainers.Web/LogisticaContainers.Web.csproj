@@ -5,14 +5,15 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LogisticaContainers.Managers\LogisticaContainers.Managers.csproj" />
-    <ProjectReference Include="..\UNLZ.LogisticaContainers\LogisticaContainers.Managers\LogisticaContainers.Managers.csproj" />
-  </ItemGroup>
+ 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
+  </ItemGroup>
+ 
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogisticaContainers.Managers\LogisticaContainers.Managers.csproj" />
   </ItemGroup>
 
 </Project>
