@@ -8,7 +8,7 @@ namespace LogisticaContainers.Managers.Entidades
         public int IdContainer { get; set; }
         public string DescripcionContainer { get; set; }
 
-        public bool EstaCargado { get; set; }
+        public int IdEstadoContainer{ get; set; }
 
 
     }
