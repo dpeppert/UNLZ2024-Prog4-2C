@@ -1,4 +1,6 @@
-﻿using LogisticaContainers.Managers;
+﻿using LogisticaContainers.Entidades;
+using LogisticaContainers.Managers;
+using LogisticaContainers.ModelFactories;
 using LogisticaContainers.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,46 +10,21 @@ namespace LogisticaContainers.Web.Controllers
     public class ContenedoresController : Controller
     {
         private IContainerManager _containerManager;
-
-        private List<ContenedorVM> _contenedores { get; set; }
+        private IContainerModelFactory _containerModelFactory;
 
         public ContenedoresController (IContainerManager containerManager)
         {
 
             this._containerManager = containerManager;
-            _contenedores = new List<ContenedorVM> ();
-            _contenedores.Add(new ContenedorVM
-            {
-                IdContenedor = 1,
-                FechaRegistracion = DateTime.Now,
-                NumeroSerie = "asda-01",
-                Direccion = "Avenida Siempreviva 2792"
-            });
-
-            _contenedores.Add(new ContenedorVM
-            {
-                IdContenedor = 2,
-                FechaRegistracion = DateTime.Now,
-                NumeroSerie = "asdasdasda-22321",
-                Direccion = "Calle Falsa 123"
-            });
-
 
         }
         // GET: ContenedoresController
         public ActionResult Index()
         {
 
-            var contenedor = this._containerManager.CrearContainer();
-            _contenedores.Add(new ContenedorVM
-            {
-                Direccion = contenedor.DescripcionContainer,
-                FechaRegistracion = contenedor.FechaAlta,
-                IdContenedor = contenedor.IdContainer,
-                NumeroSerie = contenedor.DescripcionContainer
-            });
-            ContainerManager containerManager = new ContainerManager(); 
-            return View(_contenedores);
+            var containers = _containerManager.GetContainers();
+            
+            return View(containers);
         }
 
         // GET: ContenedoresController/Details/5

@@ -1,6 +1,6 @@
 ﻿using LogisticaContainers.Managers.Entidades.Auditoria;
 
-namespace LogisticaContainers.Managers.Entidades
+namespace LogisticaContainers.Entidades
 {
     public class Container : Audit
     {

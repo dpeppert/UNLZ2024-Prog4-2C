@@ -1,4 +1,6 @@
 using LogisticaContainers.Managers;
+using LogisticaContainers.ModelFactories;
+using LogisticaContainers.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IContainerManager, ContainerManager>();
+builder.Services.AddScoped<IContainerRepository>(_ => new ContainerRepository(builder.Configuration["DbConn:ConnectionString"]));
+builder.Services.AddScoped<IContainerModelFactory, ContainerModelFactory>();
 
 var app = builder.Build();
 

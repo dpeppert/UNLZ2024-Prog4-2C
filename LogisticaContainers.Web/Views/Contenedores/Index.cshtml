@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LogisticaContainers.Web.Models.ContenedorVM>
+﻿@model IEnumerable<LogisticaContainers.ModelFactories.ContainerVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,16 +14,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdContenedor)
+                @Html.DisplayNameFor(model => model.IdContainer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumeroSerie)
+                @Html.DisplayNameFor(model => model.DescripcionContainer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaRegistracion)
+                @Html.DisplayNameFor(model => model.IdEstadoContainer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Direccion)
+                @Html.DisplayNameFor(model => model.IdContainer)
             </th>
             <th></th>
         </tr>
@@ -32,16 +32,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdContenedor)
+                @Html.DisplayFor(modelItem => item.IdContainer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumeroSerie)
+                @Html.DisplayFor(modelItem => item.DescripcionContainer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistracion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
+                @Html.DisplayFor(modelItem => item.IdEstadoContainer)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
