@@ -3,7 +3,6 @@ using LogisticaContainers.ModelFactories;
 using LogisticaContainers.Repos;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,23 +11,20 @@ namespace LogisticaContainers.Managers
 {
     public interface IContainerManager
     { 
-        IEnumerable<ContainerVM> GetContainers();
-        ContainerVM GetContainer(int IdContainer);
-        int CrearContainer(ContainerVM container, int IdUsuarioAlta);
-        bool ModificarContainer(int IdContainer, ContainerVM container, int IdUsuarioModificacion);
+        IEnumerable<ContainerCompleto> GetContainers();
+        Container GetContainer(int IdContainer);
+        int CrearContainer(Container container, int IdUsuarioAlta);
+        bool ModificarContainer(int IdContainer, Container container, int IdUsuarioModificacion);
         bool EliminarContainer(int IdContainer, int IdUsuarioBaja);
     }
 
 
     public class ContainerManager : IContainerManager
     {
-        private IContainerRepository _repo;
-        private IContainerModelFactory _modelFactory;
-
-        public ContainerManager(IContainerRepository repo, IContainerModelFactory modelFactory)
+        private IContainerRepository _repo; 
+        public ContainerManager(IContainerRepository repo )
         {
-            _repo = repo;
-            _modelFactory = modelFactory;
+            _repo = repo; 
         }
 
         /// <summary>
@@ -36,10 +32,10 @@ namespace LogisticaContainers.Managers
         /// </summary>
         /// <param name="IdContainer">Id del Contenedor</param>
         /// <returns></returns>
-        public ContainerVM GetContainer(int IdContainer)
+        public Container GetContainer(int IdContainer)
         {
             var container = _repo.GetContainer(IdContainer);
-            return _modelFactory.CrearModelo(container);
+            return container;
 
 
         }
@@ -48,7 +44,7 @@ namespace LogisticaContainers.Managers
         /// Obtiene una lista de Containers
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ContainerVM> GetContainers()
+        public IEnumerable<ContainerCompleto> GetContainers()
         {
             return _repo.GetContainersCompleto();
         }
@@ -59,9 +55,9 @@ namespace LogisticaContainers.Managers
         /// <param name="containerVm">Datos del contenedor</param>
         /// <param name="IdUsuarioAlta">Id del usuario de la acción</param>
         /// <returns></returns>
-        public int CrearContainer(ContainerVM containerVm, int IdUsuarioAlta)
+        public int CrearContainer(Container container, int IdUsuarioAlta)
         {
-            var container = _modelFactory.CrearEntidad(containerVm);
+            
             container.IdUsuarioAlta = IdUsuarioAlta;
             container.FechaAlta = DateTime.Now;
             var cont = _repo.CrearContainer(container);
@@ -89,16 +85,15 @@ namespace LogisticaContainers.Managers
         /// <param name="containerVm">Datos del contenedor</param>
         /// <param name="IdUsuarioModificacion">Id del usuario de la acción</param>
         /// <returns></returns>
-        public bool ModificarContainer(int IdContainer, ContainerVM containerVm, int IdUsuarioModificacion)
+        public bool ModificarContainer(int IdContainer, Container container, int IdUsuarioModificacion)
         {
-            //Obtengo lo que me viene del formulario 
-            var container = _modelFactory.CrearEntidad(containerVm);
-
+            
             //Obtengo lo que viene de la base de datos
             var containerEnDb = _repo.GetContainer(IdContainer);
 
             //En el objeto que viene de la base de datos, le "pego" los valores que me vienen del formulario
-            containerEnDb = _modelFactory.FusionarEntidades(container, containerEnDb);
+            containerEnDb.DescripcionContainer = container.DescripcionContainer;
+            containerEnDb.IdEstadoContainer = container.IdEstadoContainer;
             containerEnDb.IdUsuarioModificacion = IdUsuarioModificacion;
             containerEnDb.FechaModificacion = DateTime.Now;
             var cont = _repo.ModificarContainer(IdContainer, containerEnDb );

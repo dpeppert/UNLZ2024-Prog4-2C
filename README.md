@@ -67,3 +67,12 @@ definicion de vista index y create
 
 Agregamos elementos de navegacion a contenedores
 
+Clase 3 y 4: 
+
+Definición MVC - Uso de Scaffolded Items
+
+Arquitectura de Solucion - Definición de supertipos de clases 
+
+Clase 5 y 6: 
+
+Dapper - Implementación y reemplazo de informacion en memoria por acceso a una base de datos

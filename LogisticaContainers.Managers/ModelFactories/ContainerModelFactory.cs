@@ -7,59 +7,9 @@ using System.Threading.Tasks;
 
 namespace LogisticaContainers.ModelFactories
 {
-    public interface IContainerModelFactory
-    {
-        ContainerVM CrearModelo(Container container);
-        IEnumerable<ContainerVM> CrearModelos(IEnumerable<Container> containers);
-        Container CrearEntidad(ContainerVM container);
-        Container FusionarEntidades(Container Origen, Container Destino);
-    }
+    
 
-    public class ContainerModelFactory : IContainerModelFactory
-    {
-
-        public ContainerVM CrearModelo(Container container)
-        {
-            return new ContainerVM
-            {
-                IdContainer = container.IdContainer,
-                DescripcionContainer = container.DescripcionContainer,
-                IdEstadoContainer = container.IdEstadoContainer
-            };
-        }
-
-        public IEnumerable<ContainerVM> CrearModelos(IEnumerable<Container> containers)
-        {
-            List<ContainerVM> result = new List<ContainerVM>();
-            foreach (var container in containers)
-            {
-                result.Add(this.CrearModelo(container));
-            }
-
-            return result;
-
-
-        }
-
-        public Container CrearEntidad(ContainerVM containerVM)
-        {
-            return new Container
-            {
-                DescripcionContainer = containerVM.DescripcionContainer,
-                IdContainer = containerVM.IdContainer,
-                IdEstadoContainer = containerVM.IdEstadoContainer
-            };
-        }
-
-        public Container FusionarEntidades ( Container Origen, Container Destino )
-        {
-            Destino.IdEstadoContainer = Origen.IdEstadoContainer;
-            Destino.DescripcionContainer = Origen.DescripcionContainer;
-            return Destino;
-        }
-    }
-
-    public class ContainerVM
+    public class ContainerCompleto
     {
         public int IdContainer { get; set; }
         public string DescripcionContainer { get; set; }

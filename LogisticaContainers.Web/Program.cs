@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IContainerManager, ContainerManager>();
-builder.Services.AddScoped<IContainerModelFactory, ContainerModelFactory>();
 builder.Services.AddScoped<IContainerRepository>(
         _ => new ContainerRepository(builder.Configuration["Db:ConnectionString"]));
 

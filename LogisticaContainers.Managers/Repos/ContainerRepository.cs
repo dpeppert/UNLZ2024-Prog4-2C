@@ -15,7 +15,7 @@ namespace LogisticaContainers.Repos
     {
         Container GetContainer(int IdContainer);
         IEnumerable<Container> GetContainers(bool? SoloActivos = true);
-        IEnumerable<ContainerVM> GetContainersCompleto();
+        IEnumerable<ContainerCompleto> GetContainersCompleto();
         int CrearContainer(Container container);
         bool ModificarContainer(int IdContainer, Container container);
         bool EliminarContainer(int IdContainer, int IdUsuarioBaja);
@@ -72,12 +72,12 @@ namespace LogisticaContainers.Repos
         /// Obtiene una lista completa de los containers
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ContainerVM> GetContainersCompleto()
+        public IEnumerable<ContainerCompleto> GetContainersCompleto()
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                IEnumerable<ContainerVM> results =
-                        conn.Query<ContainerVM>(@"select Container.*, EstadosContainer.Descripcion Estado 
+                IEnumerable<ContainerCompleto> results =
+                        conn.Query<ContainerCompleto>(@"select Container.*, EstadosContainer.Descripcion Estado 
                                                     from container 
                                                     left join EstadosContainer on Container.IdEstadoContainer = EstadosContainer.IdEstadoContainer
                                                    where container.fechabaja is null");

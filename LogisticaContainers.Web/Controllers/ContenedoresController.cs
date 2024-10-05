@@ -1,12 +1,10 @@
 ﻿using LogisticaContainers.Managers;
-using LogisticaContainers.Managers.Entidades;
-using LogisticaContainers.ModelFactories;
+using LogisticaContainers.Managers.Entidades; 
 using LogisticaContainers.Repos;
 using LogisticaContainers.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc.Rendering; 
 using System.Linq;
 
 namespace LogisticaContainers.Web.Controllers
@@ -15,8 +13,7 @@ namespace LogisticaContainers.Web.Controllers
     {
         private IContainerManager _containerManager;
         private IEstadoContainerRepository _estadoContainerRepository;
-
-        private List<ContainerVM> _contenedores { get; set; }
+         
 
         public ContenedoresController (IContainerManager containerManager, IEstadoContainerRepository estadoContainerRepository)
         {
@@ -72,7 +69,7 @@ namespace LogisticaContainers.Web.Controllers
         {
             try
             {
-                ContainerVM container = new ContainerVM
+                Container container = new Container 
                 {
                     DescripcionContainer = collection["model.DescripcionContainer"],
                     IdEstadoContainer = int.Parse(collection["model.IdEstadoContainer"]) 
@@ -113,7 +110,7 @@ namespace LogisticaContainers.Web.Controllers
         {
             try
             {
-                ContainerVM container = new ContainerVM
+                Container  container = new Container 
                 {
                     DescripcionContainer = collection["model.DescripcionContainer"],
                     IdEstadoContainer = int.Parse(collection["model.IdEstadoContainer"])
