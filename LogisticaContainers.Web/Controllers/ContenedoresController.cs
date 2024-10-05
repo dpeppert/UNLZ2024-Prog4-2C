@@ -1,4 +1,6 @@
 ﻿using LogisticaContainers.Managers;
+using LogisticaContainers.Managers.Entidades;
+using LogisticaContainers.ModelFactories;
 using LogisticaContainers.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,45 +11,21 @@ namespace LogisticaContainers.Web.Controllers
     {
         private IContainerManager _containerManager;
 
-        private List<ContenedorVM> _contenedores { get; set; }
+        private List<ContainerVM> _contenedores { get; set; }
 
         public ContenedoresController (IContainerManager containerManager)
         {
-
-            this._containerManager = containerManager;
-            _contenedores = new List<ContenedorVM> ();
-            _contenedores.Add(new ContenedorVM
-            {
-                IdContenedor = 1,
-                FechaRegistracion = DateTime.Now,
-                NumeroSerie = "asda-01",
-                Direccion = "Avenida Siempreviva 2792"
-            });
-
-            _contenedores.Add(new ContenedorVM
-            {
-                IdContenedor = 2,
-                FechaRegistracion = DateTime.Now,
-                NumeroSerie = "asdasdasda-22321",
-                Direccion = "Calle Falsa 123"
-            });
-
+            _containerManager = containerManager;
+          
 
         }
         // GET: ContenedoresController
         public ActionResult Index()
         {
 
-            var contenedor = this._containerManager.CrearContainer();
-            _contenedores.Add(new ContenedorVM
-            {
-                Direccion = contenedor.DescripcionContainer,
-                FechaRegistracion = contenedor.FechaAlta,
-                IdContenedor = contenedor.IdContainer,
-                NumeroSerie = contenedor.DescripcionContainer
-            });
-            ContainerManager containerManager = new ContainerManager(); 
-            return View(_contenedores);
+            var containers = _containerManager.GetContainers();
+            
+            return View(containers);
         }
 
         // GET: ContenedoresController/Details/5
@@ -69,6 +47,17 @@ namespace LogisticaContainers.Web.Controllers
         {
             try
             {
+                Container container = new Container
+                {
+                    IdContainer = 1,
+                    DescripcionContainer = collection["DescripcionContainer"],
+                    IdEstadoContainer = int.Parse(collection["IdEstadoContainer"]),
+                    IdUsuarioAlta = 1,
+                    FechaAlta = DateTime.Now
+                };
+
+                _containerManager.CrearContainer(container);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

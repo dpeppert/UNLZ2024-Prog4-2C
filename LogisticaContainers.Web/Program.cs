@@ -1,4 +1,6 @@
 using LogisticaContainers.Managers;
+using LogisticaContainers.ModelFactories;
+using LogisticaContainers.Repos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IContainerManager, ContainerManager>();
-
+builder.Services.AddScoped<IContainerModelFactory, ContainerModelFactory>();
+builder.Services.AddScoped<IContainerRepository>(
+        _ => new ContainerRepository(builder.Configuration["Db:ConnectionString"]));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

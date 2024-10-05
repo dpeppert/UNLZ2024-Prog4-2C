@@ -1,4 +1,4 @@
-﻿@model LogisticaContainers.Web.Models.ContenedorVM
+﻿@model LogisticaContainers.ModelFactories.ContainerVM
 
 @{
     ViewData["Title"] = "Create";
@@ -14,25 +14,21 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdContenedor" class="control-label"></label>
-                <input asp-for="IdContenedor" class="form-control" />
-                <span asp-validation-for="IdContenedor" class="text-danger"></span>
+                <label asp-for="IdContainer" class="control-label"></label>
+                <input asp-for="IdContainer" class="form-control" />
+                <span asp-validation-for="IdContainer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeroSerie" class="control-label"></label>
-                <input asp-for="NumeroSerie" class="form-control" />
-                <span asp-validation-for="NumeroSerie" class="text-danger"></span>
+                <label asp-for="DescripcionContainer" class="control-label"></label>
+                <input asp-for="DescripcionContainer" class="form-control" />
+                <span asp-validation-for="DescripcionContainer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaRegistracion" class="control-label"></label>
-                <input asp-for="FechaRegistracion" class="form-control" />
-                <span asp-validation-for="FechaRegistracion" class="text-danger"></span>
+                <label asp-for="IdEstadoContainer" class="control-label"></label>
+                <input asp-for="IdEstadoContainer" class="form-control" />
+                <span asp-validation-for="IdEstadoContainer" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
