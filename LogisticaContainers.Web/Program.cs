@@ -11,6 +11,9 @@ builder.Services.AddScoped<IContainerManager, ContainerManager>();
 builder.Services.AddScoped<IContainerModelFactory, ContainerModelFactory>();
 builder.Services.AddScoped<IContainerRepository>(
         _ => new ContainerRepository(builder.Configuration["Db:ConnectionString"]));
+
+builder.Services.AddScoped<IEstadoContainerRepository>(
+        _ => new EstadoContainerRepository(builder.Configuration["Db:ConnectionString"]));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

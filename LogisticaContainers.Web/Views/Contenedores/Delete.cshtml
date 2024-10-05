@@ -1,0 +1,33 @@
+﻿@model LogisticaContainers.Web.Models.ContainerModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ContainerVM</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="model.DescripcionContainer" class="control-label"></label>
+                <input asp-for="model.DescripcionContainer" class="form-control" disabled />
+                <span asp-validation-for="model.DescripcionContainer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="model.IdEstadoContainer" class="control-label"></label>
+                @Html.DropDownListFor(m => m.model.IdEstadoContainer, Model.ListaEstadosItem, "Seleccione un estado", new { @class = "form-control", @disabled = "true" })
+                <span asp-validation-for="model.IdEstadoContainer" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

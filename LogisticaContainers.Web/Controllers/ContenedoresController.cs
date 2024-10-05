@@ -1,22 +1,27 @@
 ﻿using LogisticaContainers.Managers;
 using LogisticaContainers.Managers.Entidades;
 using LogisticaContainers.ModelFactories;
+using LogisticaContainers.Repos;
 using LogisticaContainers.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
+using System.Linq;
 
 namespace LogisticaContainers.Web.Controllers
 {
     public class ContenedoresController : Controller
     {
         private IContainerManager _containerManager;
+        private IEstadoContainerRepository _estadoContainerRepository;
 
         private List<ContainerVM> _contenedores { get; set; }
 
-        public ContenedoresController (IContainerManager containerManager)
+        public ContenedoresController (IContainerManager containerManager, IEstadoContainerRepository estadoContainerRepository)
         {
             _containerManager = containerManager;
-          
+            _estadoContainerRepository = estadoContainerRepository;
 
         }
         // GET: ContenedoresController
@@ -31,13 +36,33 @@ namespace LogisticaContainers.Web.Controllers
         // GET: ContenedoresController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            var container = _containerManager.GetContainer(id);
+
+            ContainerModel containerModel = new ContainerModel();
+            containerModel.model = container;
+            containerModel.ListaEstadosItem = new List<SelectListItem>();
+            var estados = _estadoContainerRepository.GetEstadosContainer();
+            foreach(var estado in estados)
+            {
+                containerModel.ListaEstadosItem.Add(new SelectListItem { Value = estado.IdEstadoContainer.ToString(), Text = estado.Descripcion });
+            }
+
+            return View(containerModel);
         }
 
         // GET: ContenedoresController/Create
         public ActionResult Create()
         {
-            return View();
+            ContainerModel containerModel = new ContainerModel();
+            containerModel.model = null;
+            containerModel.ListaEstadosItem = new List<SelectListItem>();
+            var estados = _estadoContainerRepository.GetEstadosContainer();
+            foreach (var estado in estados)
+            {
+                containerModel.ListaEstadosItem.Add(new SelectListItem { Value = estado.IdEstadoContainer.ToString(), Text = estado.Descripcion });
+            }
+            return View(containerModel);
         }
 
         // POST: ContenedoresController/Create
@@ -47,16 +72,14 @@ namespace LogisticaContainers.Web.Controllers
         {
             try
             {
-                Container container = new Container
+                ContainerVM container = new ContainerVM
                 {
-                    IdContainer = 1,
-                    DescripcionContainer = collection["DescripcionContainer"],
-                    IdEstadoContainer = int.Parse(collection["IdEstadoContainer"]),
-                    IdUsuarioAlta = 1,
-                    FechaAlta = DateTime.Now
+                    DescripcionContainer = collection["model.DescripcionContainer"],
+                    IdEstadoContainer = int.Parse(collection["model.IdEstadoContainer"]) 
                 };
+                int idUsuario = GetUserIdentityId();
 
-                _containerManager.CrearContainer(container);
+                _containerManager.CrearContainer(container, idUsuario);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -69,7 +92,18 @@ namespace LogisticaContainers.Web.Controllers
         // GET: ContenedoresController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var container = _containerManager.GetContainer(id);
+            var estados = _estadoContainerRepository.GetEstadosContainer();
+
+            ContainerModel containerModel = new ContainerModel();
+            containerModel.model = container;
+            containerModel.ListaEstadosItem = new List<SelectListItem>();
+            foreach (var estado in estados)
+            {
+                containerModel.ListaEstadosItem.Add(new SelectListItem { Value = estado.IdEstadoContainer.ToString(), Text = estado.Descripcion });
+            }
+
+            return View(containerModel);
         }
 
         // POST: ContenedoresController/Edit/5
@@ -79,6 +113,15 @@ namespace LogisticaContainers.Web.Controllers
         {
             try
             {
+                ContainerVM container = new ContainerVM
+                {
+                    DescripcionContainer = collection["model.DescripcionContainer"],
+                    IdEstadoContainer = int.Parse(collection["model.IdEstadoContainer"])
+                };
+                int idUsuario = GetUserIdentityId();
+
+                _containerManager.ModificarContainer(id, container, idUsuario);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -90,7 +133,17 @@ namespace LogisticaContainers.Web.Controllers
         // GET: ContenedoresController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var container = _containerManager.GetContainer(id);
+            var estados = _estadoContainerRepository.GetEstadosContainer();
+
+            ContainerModel containerModel = new ContainerModel();
+            containerModel.model = container;
+            containerModel.ListaEstadosItem = new List<SelectListItem>();
+            foreach (var estado in estados)
+            {
+                containerModel.ListaEstadosItem.Add(new SelectListItem { Value = estado.IdEstadoContainer.ToString(), Text = estado.Descripcion });
+            }
+            return View(containerModel);
         }
 
         // POST: ContenedoresController/Delete/5
@@ -100,6 +153,12 @@ namespace LogisticaContainers.Web.Controllers
         {
             try
             {
+
+
+                int idUsuario = GetUserIdentityId();
+
+                _containerManager.EliminarContainer(id, idUsuario);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -107,5 +166,14 @@ namespace LogisticaContainers.Web.Controllers
                 return View();
             }
         }
+
+
+
+
+        private int GetUserIdentityId()
+        {
+            return 1; //Ver en la clase 7
+        }
+
     }
 }

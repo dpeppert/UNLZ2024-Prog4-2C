@@ -1,0 +1,32 @@
+﻿@model LogisticaContainers.Web.Models.ContainerModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Container </h4>
+    <hr />
+    <div class="row">
+        <div class = "col-md-4">
+            <div class="form-group">
+                <label asp-for="model.DescripcionContainer" class="control-label"></label>
+                <input asp-for="model.DescripcionContainer" class="form-control" disabled/>
+                <span asp-validation-for="model.DescripcionContainer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="model.IdEstadoContainer" class="control-label"></label>
+                @Html.DropDownListFor(m => m.model.IdEstadoContainer, Model.ListaEstadosItem, "Seleccione un estado", new { @class = "form-control", @disabled="true" })
+                <span asp-validation-for="model.IdEstadoContainer" class="text-danger"></span>
+            </div>
+        </div>
+         
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.model.IdContainer }) |
+    <a asp-action="Index">Back to List</a>
+</div>

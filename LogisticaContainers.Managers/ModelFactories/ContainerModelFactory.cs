@@ -12,6 +12,7 @@ namespace LogisticaContainers.ModelFactories
         ContainerVM CrearModelo(Container container);
         IEnumerable<ContainerVM> CrearModelos(IEnumerable<Container> containers);
         Container CrearEntidad(ContainerVM container);
+        Container FusionarEntidades(Container Origen, Container Destino);
     }
 
     public class ContainerModelFactory : IContainerModelFactory
@@ -48,6 +49,13 @@ namespace LogisticaContainers.ModelFactories
                 IdContainer = containerVM.IdContainer,
                 IdEstadoContainer = containerVM.IdEstadoContainer
             };
+        }
+
+        public Container FusionarEntidades ( Container Origen, Container Destino )
+        {
+            Destino.IdEstadoContainer = Origen.IdEstadoContainer;
+            Destino.DescripcionContainer = Origen.DescripcionContainer;
+            return Destino;
         }
     }
 

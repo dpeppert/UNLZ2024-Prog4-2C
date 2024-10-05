@@ -1,19 +1,19 @@
 ﻿@model LogisticaContainers.Web.Models.ContainerModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
-<h4>ContenedorVM</h4>
+<h4>ContainerVM</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
+        
             <div class="form-group">
                 <label asp-for="model.DescripcionContainer" class="control-label"></label>
                 <input asp-for="model.DescripcionContainer" class="form-control" />
@@ -23,11 +23,10 @@
                 <label asp-for="model.IdEstadoContainer" class="control-label"></label>
                 @Html.DropDownListFor(m => m.model.IdEstadoContainer, Model.ListaEstadosItem, "Seleccione un estado", new { @class = "form-control" })
                 <span asp-validation-for="model.IdEstadoContainer" class="text-danger"></span>
-            </div>
-          
-            
+            </div> 
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

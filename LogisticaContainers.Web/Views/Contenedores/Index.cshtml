@@ -29,7 +29,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td> 
                 @Html.DisplayFor(modelItem => item.IdContainer)
             </td>
             <td>
@@ -40,9 +40,9 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.IdContainer  }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IdContainer }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IdContainer })
             </td>
         </tr>
 }
