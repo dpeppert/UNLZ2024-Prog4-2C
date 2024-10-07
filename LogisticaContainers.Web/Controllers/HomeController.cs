@@ -3,11 +3,13 @@
 using LogisticaContainers.Managers.Entidades;
 using LogisticaContainers.Managers.Managers;
 using LogisticaContainers.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace LogisticaContainers.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

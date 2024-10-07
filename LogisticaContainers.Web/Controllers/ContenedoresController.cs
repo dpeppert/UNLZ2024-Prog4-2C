@@ -169,7 +169,7 @@ namespace LogisticaContainers.Web.Controllers
 
         private int GetUserIdentityId()
         {
-            return 1; //Ver en la clase 7
+            return int.Parse(HttpContext.User.Claims.First(x => x.Type == "usuarioContainer").Value); ; //Ver en la clase 7
         }
 
     }
