@@ -1,6 +1,7 @@
 ﻿using LogisticaContainers.Managers;
 using LogisticaContainers.Managers.Entidades; 
 using LogisticaContainers.Repos;
+using LogisticaContainers.Web.Helpers;
 using LogisticaContainers.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace LogisticaContainers.Web.Controllers
 
         }
         // GET: ContenedoresController
+      //  [AuthorizeByRole("Administrador")]
         public ActionResult Index()
         {
 

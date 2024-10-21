@@ -47,7 +47,7 @@ namespace LogisticaContainers.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return View("Index");
+            return RedirectToAction("Index", "Home");
         }
 
 

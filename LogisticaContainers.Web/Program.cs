@@ -70,6 +70,8 @@ builder.Services.AddAuthentication(opciones =>
         // Agregar reclamaciones personalizadas aquí
         ctx.Identity.AddClaim(new System.Security.Claims.Claim("usuarioContainer", idUsuario.ToString()));
 
+        ctx.Identity.AddClaim(new System.Security.Claims.Claim("UNLZRole", "Administrador"));
+
         var accessToken = ctx.AccessToken;
         ctx.Identity.AddClaim(new System.Security.Claims.Claim("accessToken", accessToken));
 
